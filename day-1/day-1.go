@@ -6,6 +6,7 @@ import (
 	"os"
 	"bufio"
 	"strconv"
+	"sort"
 )
 
 
@@ -26,9 +27,9 @@ func main() {
 
 	defer content.Close()
 	scanner := bufio.NewScanner(content)
-	var calorieCounter, sum, elf int
-	calorieCounter = 0
-	index := 1
+	var sum int
+	sum = 0
+	caloriesCarriedByEachElf := []int{}
 
 
 
@@ -37,18 +38,23 @@ func main() {
 		var inputString string = scanner.Text()
 		i, _ := strconv.Atoi(inputString)
 		sum = sum + i
-
+		
 		if i == 0 {
-			index = index + 1
-			if sum >= calorieCounter{
-				calorieCounter = sum
-				elf = index
-			}
+			caloriesCarriedByEachElf = append(caloriesCarriedByEachElf, sum)
 			sum = 0
-			fmt.Println(calorieCounter,elf)
 		}
+		
 
 	}
+	sort.Ints(caloriesCarriedByEachElf)
+	firstElf := caloriesCarriedByEachElf[len(caloriesCarriedByEachElf)-1]
+	secondElf := caloriesCarriedByEachElf[len(caloriesCarriedByEachElf)-2]
+	thirdElf := caloriesCarriedByEachElf[len(caloriesCarriedByEachElf)-3]
+	fmt.Println(firstElf+secondElf+thirdElf)
+
+
+
+
 	
 
 
