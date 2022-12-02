@@ -27,8 +27,8 @@ func main() {
 
 	scanner := bufio.NewScanner(content)
 	var fileLines []string
-	var moveSet []ticTac 
-
+	var sum int
+	sum = 0
 
 	for scanner.Scan(){
 		var text string = scanner.Text()
@@ -39,77 +39,79 @@ func main() {
 		var moveStruct ticTac
 		var firstMove = line[0:1]
 		var secondMove = line[2:]
+
 		moveStruct.moveOne = firstMove
 		moveStruct.moveTwo = secondMove
-		moveSet = append(moveSet, moveStruct)
-	}
 
-	gameBoard('C','Z')
+		sum = sum + gameBoard(moveStruct.moveOne, moveStruct.moveTwo)
+
+	}
+	fmt.Println(sum)
+
+
+	
 
 
 }
 
-
-
 //empty function valid for compiler? 
 
-func gameBoard(moveOne rune, moveTwo rune) int {
+func gameBoard(moveOne string, moveTwo string) int {
 	var result int
 	var move int
 	var sum int 
 	switch moveOne{
-	case 'A':
-		if moveTwo == 'X'{
+	case "A":
+		if moveTwo == "X"{
 			move = 1
 			result = 3
 			sum = move + result
 		}
-		if moveTwo == 'Y'{
+		if moveTwo == "Y"{
 			move = 2
 			result = 6
 			sum = move + result
 		}
-		if moveTwo == 'Z'{
+		if moveTwo == "Z"{
 			move = 3
 			result = 0
 			sum = move + result
 		}
 	
-	case 'B':
-		if moveTwo == 'X'{
+	case "B":
+		if moveTwo == "X"{
 			move = 1
 			result = 0
 			sum = move + result
 		}
-		if moveTwo == 'Y'{
+		if moveTwo == "Y"{
 			move = 2
 			result = 3
 			sum = move + result
 		}
-		if moveTwo == 'Z'{
+		if moveTwo == "Z"{
 			move = 3
 			result = 6
 			sum = move + result
 		}
 
 
-	case 'C':
-		if moveTwo == 'X'{
+	case "C":
+		if moveTwo == "X"{
 			move = 1
 			result = 6
 			sum = move + result
 		}
-		if moveTwo == 'Y'{
+		if moveTwo == "Y"{
 			move = 2
 			result = 0
 			sum = move + result
 		}
-		if moveTwo == 'Z'{
+		if moveTwo == "Z"{
 			move = 3
 			result = 3
 			sum = move + result
 		}
 	}
-	fmt.Println(sum)
 	return sum
 }
