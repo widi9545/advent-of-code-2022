@@ -28,7 +28,9 @@ func main() {
 	scanner := bufio.NewScanner(content)
 	var fileLines []string
 	var sum int
+	var weirdSum int
 	sum = 0
+	weirdSum = 0
 
 	for scanner.Scan(){
 		var text string = scanner.Text()
@@ -44,9 +46,10 @@ func main() {
 		moveStruct.moveTwo = secondMove
 
 		sum = sum + gameBoard(moveStruct.moveOne, moveStruct.moveTwo)
+		weirdSum = weirdSum + decisionGameBoard(moveStruct.moveOne, moveStruct.moveTwo)
 
 	}
-	fmt.Println(sum)
+	fmt.Println(weirdSum)
 
 
 	
@@ -110,6 +113,69 @@ func gameBoard(moveOne string, moveTwo string) int {
 		if moveTwo == "Z"{
 			move = 3
 			result = 3
+			sum = move + result
+		}
+	}
+	return sum
+}
+
+
+
+
+func decisionGameBoard(moveOne string, moveTwo string) int {
+	var result int
+	var move int
+	var sum int 
+	switch moveOne{
+	case "A":
+		if moveTwo == "X"{
+			move = 3
+			result = 0
+			sum = move + result
+		}
+		if moveTwo == "Y"{
+			move = 1
+			result = 3
+			sum = move + result
+		}
+		if moveTwo == "Z"{
+			move = 2
+			result = 6
+			sum = move + result
+		}
+	
+	case "B":
+		if moveTwo == "X"{
+			move = 1
+			result = 0
+			sum = move + result
+		}
+		if moveTwo == "Y"{
+			move = 2
+			result = 3
+			sum = move + result
+		}
+		if moveTwo == "Z"{
+			move = 3
+			result = 6
+			sum = move + result
+		}
+
+
+	case "C":
+		if moveTwo == "X"{
+			move = 2
+			result = 0
+			sum = move + result
+		}
+		if moveTwo == "Y"{
+			move = 3
+			result = 3
+			sum = move + result
+		}
+		if moveTwo == "Z"{
+			move = 1
+			result = 6
 			sum = move + result
 		}
 	}
